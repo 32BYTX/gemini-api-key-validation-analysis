@@ -157,6 +157,28 @@ sequenceDiagram
         Script->>Script: Classify key state
     end
 ```
+```mermaid
+flowchart TD
+    A[Unauthenticated Request] --> B[Key Validation Layer]
+
+    B -->|400| C[Non-existent Key]
+    B -->|403| D[Real Project Identified]
+    B -->|429| E[Active Project\nQuota Exceeded]
+    B -->|200| F[Valid API Key]
+
+    D --> D1[Extract Project ID]
+    D --> D2[Learn Project State]
+
+    E --> E1[Confirm Project Activity]
+    E --> E2[Target for further abuse]
+
+    F --> F1[Confirmed Credential]
+
+    style B fill:#f6f6f6,stroke:#333
+    style D fill:#ffe6e6
+    style E fill:#fff2cc
+    style F fill:#e6ffe6
+```
 
 The provided PoC demonstrates this behavior using parallel requests and response parsing.
 
