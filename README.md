@@ -220,5 +220,5 @@ MIT License
 
 ## Author
 
-GHOULSSA TAIBI **Independent security research**
+32BYTX **Independent security research**
 
